@@ -19,4 +19,9 @@ export const habits = [
     title: "Learn or practice coding",
     isDone: false,
   },
+  {
+    id: 5,
+    title: "Learn or practice coding",
+    isDone: false,
+  },
 ];
