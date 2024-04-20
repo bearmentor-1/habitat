@@ -1,4 +1,4 @@
-export const habits = [
+export const dataHabits = [
   {
     id: 1,
     title: "Drink water for 2L",
@@ -21,7 +21,7 @@ export const habits = [
   },
   {
     id: 5,
-    title: "Learn or practice coding",
+    title: "Get a rest",
     isDone: false,
   },
 ];
