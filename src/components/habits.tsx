@@ -2,7 +2,13 @@ import { useState } from "react";
 import { dataHabits } from "../data/habits";
 
 export function Habits() {
-  const [habits, setHabits] = useState(dataHabits);
+  const urlParams = new URLSearchParams(window.location.search);
+  const keyword = urlParams.get("q")?.toString();
+  const filteredDataHabits = keyword
+    ? dataHabits.filter((habit) => habit.title.toLowerCase().includes(keyword))
+    : dataHabits;
+
+  const [habits, setHabits] = useState(filteredDataHabits);
 
   function removeHabitById(id: number) {
     const updatedHabits = habits.filter((habit) => habit.id !== id);
@@ -29,6 +35,7 @@ export function Habits() {
 
   return (
     <div>
+      <pre>keyword: {keyword}</pre>
       <form>
         <label htmlFor="keyword">Search</label>
         <input
