@@ -3,7 +3,11 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 // import { App } from "./app";
-import { RootRoute, loader as rootLoader } from "./routes/root";
+import {
+  RootRoute,
+  loader as rootLoader,
+  action as rootAction,
+} from "./routes/root";
 import { ErrorRoute } from "./routes/error";
 import { AboutRoute } from "./routes/about";
 import { HabitRoute, loader as habitLoader } from "./routes/habit";
@@ -16,6 +20,7 @@ const router = createBrowserRouter([
     element: <RootRoute />,
     errorElement: <ErrorRoute />,
     loader: rootLoader,
+    action: rootAction,
     children: [
       {
         path: "/about",

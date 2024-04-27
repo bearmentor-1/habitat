@@ -1,10 +1,17 @@
-import { Outlet, Link, useLoaderData } from "react-router-dom";
+import { Outlet, Link, Form, useLoaderData } from "react-router-dom";
 
-import { getHabits } from "../data/habits";
+import { addHabit, getHabits } from "../data/habits";
 
 export function loader() {
   const habits = getHabits();
   return { habits };
+}
+
+export function action() {
+  const habit = addHabit({ title: "New habit", isDone: false });
+  console.log({ habit });
+
+  return { habit };
 }
 
 export function RootRoute() {
@@ -36,9 +43,9 @@ export function RootRoute() {
             <div id="search-spinner" aria-hidden hidden />
           </form>
 
-          <form method="post">
+          <Form method="post">
             <button type="submit">New</button>
-          </form>
+          </Form>
         </div>
 
         <nav>
