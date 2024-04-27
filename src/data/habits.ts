@@ -1,4 +1,4 @@
-export const dataHabits = [
+export let dataHabits = [
   {
     id: 1,
     title: "Drink water for 2L",
@@ -25,3 +25,25 @@ export const dataHabits = [
     isDone: false,
   },
 ];
+
+export function getHabits() {
+  return dataHabits;
+}
+
+export function addHabit({
+  title,
+  isDone,
+}: {
+  title: string;
+  isDone: boolean;
+}) {
+  const nextId =
+    dataHabits.length > 0 ? dataHabits[dataHabits.length - 1].id + 1 : 1;
+
+  const newHabit = { id: nextId, title, isDone };
+  const newDataHabits = [...dataHabits, newHabit];
+
+  dataHabits = newDataHabits;
+
+  console.log({ title, isDone });
+}
