@@ -1,9 +1,23 @@
-import { Form } from "react-router-dom";
+import { Form, useLoaderData, LoaderFunctionArgs } from "react-router-dom";
 
-import { dataHabits } from "../data/habits";
+import { getHabitById } from "../data/habits";
+
+export function loader({ params }: LoaderFunctionArgs) {
+  const habitId = Number(params.habitId);
+  const habit = getHabitById(habitId);
+  return { habit };
+}
 
 export function HabitRoute() {
-  const habit = dataHabits[0];
+  const { habit } = useLoaderData() as ReturnType<typeof loader>;
+
+  if (!habit) {
+    return (
+      <div>
+        <p>Habit not found</p>
+      </div>
+    );
+  }
 
   return (
     <div id="habit">

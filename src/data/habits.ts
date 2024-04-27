@@ -30,6 +30,11 @@ export function getHabits() {
   return dataHabits;
 }
 
+export function getHabitById(id: number) {
+  const foundHabit = dataHabits.find((habit) => habit.id === id);
+  return foundHabit;
+}
+
 export function addHabit({
   title,
   isDone,
