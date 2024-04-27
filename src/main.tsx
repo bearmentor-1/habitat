@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RootRoute } from "./routes/root";
 import { ErrorRoute } from "./routes/error";
 import { AboutRoute } from "./routes/about";
+import { HabitRoute } from "./routes/habit";
 
 import "./index.css";
 
@@ -14,10 +15,16 @@ const router = createBrowserRouter([
     path: "/",
     element: <RootRoute />,
     errorElement: <ErrorRoute />,
-  },
-  {
-    path: "/about",
-    element: <AboutRoute />,
+    children: [
+      {
+        path: "/about",
+        element: <AboutRoute />,
+      },
+      {
+        path: "/habits/:habitId",
+        element: <HabitRoute />,
+      },
+    ],
   },
 ]);
 

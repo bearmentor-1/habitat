@@ -3,3 +3,21 @@
   line-height: 1.5;
   font-weight: 400;
 }
+
+body {
+  margin: 0;
+}
+
+.root-layout {
+  display: flex;
+  gap: 2rem;
+}
+
+.sidebar {
+  background: #eee;
+  padding: 1rem;
+}
+
+.sidebar {
+  padding: 1rem;
+}

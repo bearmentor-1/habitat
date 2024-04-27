@@ -1,8 +1,21 @@
+import { useState } from "react";
+import { Outlet, Link } from "react-router-dom";
+
+import { getHabits } from "../data/habits";
+
 export function RootRoute() {
+  const [habits] = useState(getHabits());
+
   return (
-    <>
-      <div id="sidebar">
-        <h1>Habitat</h1>
+    <div className="root-layout">
+      <aside id="sidebar" className="sidebar">
+        <div>
+          <Link to="/">
+            <h1>Habitat</h1>
+          </Link>
+
+          <Link to="/about">About</Link>
+        </div>
 
         <div>
           <form method="get" id="search-form" role="search">
@@ -26,17 +39,18 @@ export function RootRoute() {
 
         <nav>
           <ul>
-            <li>
-              <a href={`/habits/1`}>Morning jogging</a>
-            </li>
-            <li>
-              <a href={`/habits/2`}>Breakfast</a>
-            </li>
+            {habits.map((habit) => (
+              <li key={habit.id}>
+                <Link to={`/habits/${habit.id}`}>{habit.title}</Link>
+              </li>
+            ))}
           </ul>
         </nav>
-      </div>
+      </aside>
 
-      <div id="detail">{/* Detail */}</div>
-    </>
+      <main id="detail" className="detail">
+        <Outlet />
+      </main>
+    </div>
   );
 }
