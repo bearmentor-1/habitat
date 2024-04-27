@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, Link, useLoaderData } from "react-router-dom";
 
 import { getHabits } from "../data/habits";
 
+export function loader() {
+  const habits = getHabits();
+  return { habits };
+}
+
 export function RootRoute() {
-  const [habits] = useState(getHabits());
+  const { habits } = useLoaderData() as ReturnType<typeof loader>;
 
   return (
     <div className="root-layout">
